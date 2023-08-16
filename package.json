@@ -1,0 +1,18 @@
+{
+  "name": "robustive-ts-setup",
+  "version": "1.0.0",
+  "scripts": {
+    "setup": "ts-node index.ts"
+  },
+  "main": "index.js",
+  "author": "Yusuke SAITO",
+  "license": "MIT",
+  "dependencies": {
+    "prompts": "terkelg/prompts#master",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.1.6"
+  },
+  "devDependencies": {
+    "@types/node": "^20.5.0"
+  }
+}
