@@ -1,15 +1,13 @@
 import * as dotenv from "dotenv";
 import * as prompts from "prompts";
 import * as readline from "node:readline/promises";
-import { exit, stdin as input, stdout as output } from "node:process";
-import { copyFile, readFile, readdir, writeFile } from "node:fs/promises";
+import { exit } from "node:process";
+import { access, constants, copyFile, readFile, readdir, rename, writeFile } from "node:fs/promises";
 import { mkdir } from "node:fs";
 import { execSync } from "node:child_process";
 import { parse } from "jsonc-parser";
 
 dotenv.config();
-
-const rl = readline.createInterface({ input, output });
 
 const path = process.env.WORKSPACE_PATH;
 
@@ -24,6 +22,7 @@ readdir(path, { withFileTypes : true })
             .map(d => ({ title: d.name, value: d.name }));
     })
     .then((choices: prompts.Choice[]) => {
+        // プロジェクトの選択
         const questions = [
             {
                 type: "select"
@@ -43,7 +42,7 @@ readdir(path, { withFileTypes : true })
         // ディレクトリの作成
         return readFile("./template/directory.json", "utf8")
             .then((data) => {
-                const directories: string[] = JSON.parse(data);
+                const directories: string[] = parse(data);
                 directories.forEach((directory) => {
                     mkdir(`${ projectPath }/${ directory }`, { recursive: true }, (err) => {
                         if (err) console.error(`${ directory } の作成に失敗しました。`);
@@ -80,7 +79,30 @@ readdir(path, { withFileTypes : true })
                     });
                     return projectPath; 
                 })
+            })
+            .then(() => {
+                // 既存ファイルの移動
+                return readFile("./template/move.json", "utf8")
+                .then((data) => {
+                    const templates: { source: string; destination: string; }[] = parse(data);
+                    templates.forEach((template) => {
+                        return access(`${ projectPath }/${ template.source }`, constants.F_OK)
+                            .then(() => {
+                                return rename(`${ projectPath }/${ template.source }`, `${ projectPath }/${ template.destination }`)
+                            })
+                            .then(() => {
+                                console.log(`moved: ${ template.source } ---> ${ template.destination }`);
+                            })
+                            .catch((err) => {
+                                if (err.code === "ENOENT") {
+                                    console.log(`not found: ${ template.source }`)
+                                }
+                                if (err.code === "EPERM") {
+                                    console.log(`permission denied: ${ template.source }`)
+                                }
+                            });
+                    });
+                    return projectPath; 
+                });
             });
-    })
-    
-    .finally(() => rl.close());
+    });

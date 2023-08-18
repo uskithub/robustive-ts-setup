@@ -1,0 +1,4 @@
+[
+    { "source": "src/App.vue", "destination": "src/client/App.vue" }
+    , { "source": "src/main.ts", "destination": "src/client/main.ts" }
+]
