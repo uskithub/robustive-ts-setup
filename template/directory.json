@@ -1,0 +1,15 @@
+[
+    "src/client/service/application/performers"
+    , "src/client/service/infrastructure"
+    , "src/client/service/presentation/components"
+    , "src/client/service/presentation/views"
+    , "src/client/system"
+    , "src/server/service"
+    , "src/server/system"
+    , "src/shared/service/domain/entities"
+    , "src/shared/service/domain/valueObjects"
+    , "src/shared/service/domain/services"
+    , "src/shared/service/application/actors"
+    , "src/shared/service/application/usecases"
+    , "src/shared/system"
+]

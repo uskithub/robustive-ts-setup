@@ -1,0 +1,36 @@
+{
+  "compilerOptions": {
+    "target": "esnext"
+    , "useDefineForClassFields": true
+    , "module": "commonjs"
+    , "moduleResolution": "node"
+    , "strict": true
+    , "jsx": "preserve"
+    , "sourceMap": true
+    , "resolveJsonModule": true
+    , "esModuleInterop": true
+    , "lib": ["esnext", "dom"]
+    , "baseUrl": "."
+    , "paths": {
+      "@/*": ["src/*"]
+      , "@client/*": ["src/client/*"]
+      , "@server/*": ["src/server/*"]
+      , "@shared/*": ["src/shared/*"]
+      , "@domain/*": ["src/shared/service/domain/*"]
+      , "@interfaces/*": ["src/shared/service/domain/interfaces/*"]
+      , "@usecases/*": ["src/shared/service/application/usecases/*"]
+      , "@views/*": ["src/client/service/presentation/views/*"]
+    }
+  }
+  , "ts-node": {
+    "esm": true // nodeでimportを使うために必要
+    , "require": ["tsconfig-paths/register"] // tsconfig.jsonのpathsを使うために必要
+  }
+  , "include": [
+    "src/**/*.ts"
+    , "src/**/*.d.ts"
+    , "src/**/*.tsx"
+    , "src/**/*.vue"
+  ]
+  , "skipLibCheck": true
+}

@@ -2,8 +2,10 @@ import * as dotenv from "dotenv";
 import * as prompts from "prompts";
 import * as readline from "node:readline/promises";
 import { exit, stdin as input, stdout as output } from "node:process";
-import { readFile, readdir } from "node:fs/promises";
+import { copyFile, readFile, readdir, writeFile } from "node:fs/promises";
 import { mkdir } from "node:fs";
+import { execSync } from "node:child_process";
+import { parse } from "jsonc-parser";
 
 dotenv.config();
 
@@ -12,6 +14,7 @@ const rl = readline.createInterface({ input, output });
 const path = process.env.WORKSPACE_PATH;
 
 if (path === undefined) {
+    console.error("WORKSPACE_PATH is not defined.");
     exit(1);
 }
 
@@ -34,25 +37,50 @@ readdir(path, { withFileTypes : true })
     .then((answers: prompts.Answers<string>) => {
         const projectPath = `${ path }/${ answers.project }`;
         
-        // package.json
-        readFile(`${ projectPath }/package.json`, "utf8")
-            .then((data) => {
-                const packageJson = JSON.parse(data);
-                console.log("packageJson", packageJson);
-            });
+        // package.json に Dependencies を追加
+        execSync(`cd ${ projectPath } && yarn add Robustive/robustive-ts`);
         
         // ディレクトリの作成
-        mkdir(`${ projectPath }/src/client`, { recursive: true }, (err) => {
-            if (err) { throw err; }
-            console.log('testディレクトリが作成されました');
-        });
-        mkdir(`${ projectPath }/src/server`, { recursive: true }, (err) => {
-            if (err) { throw err; }
-            console.log('testディレクトリが作成されました');
-        });
-        mkdir(`${ projectPath }/src/shared`, { recursive: true }, (err) => {
-            if (err) { throw err; }
-            console.log('testディレクトリが作成されました');
-        });
+        return readFile("./template/directory.json", "utf8")
+            .then((data) => {
+                const directories: string[] = JSON.parse(data);
+                directories.forEach((directory) => {
+                    mkdir(`${ projectPath }/${ directory }`, { recursive: true }, (err) => {
+                        if (err) console.error(`${ directory } の作成に失敗しました。`);
+                        else console.log(`created: ${ projectPath }/${ directory }`);
+                    });
+                });
+                return projectPath; 
+            })
     })
+    .then((projectPath: string) => {
+        // tsconfigへの項目追加
+        return readFile("./template/tsconfig.json", "utf8")
+            .then((data) => {
+                const template = parse(data);
+                return readFile(`${ projectPath }/tsconfig.json`, "utf8")
+                    .then((data) => {
+                        const tsconfig = parse(data);
+                        return copyFile(`${ projectPath }/tsconfig.json`, `${ projectPath }/tsconfig.json.bak`)
+                            .then(() => {
+                                return writeFile(`${ projectPath }/tsconfig.json`, JSON.stringify(Object.assign(tsconfig, template), null, 2));
+                            });
+                    });
+            })
+            .then(() => {
+                // テンプレートのコピー
+                return readFile("./template/copy.json", "utf8")
+                .then((data) => {
+                    const templates: { source: string; destination: string; }[] = parse(data);
+                    templates.forEach((template) => {
+                        return copyFile(template.source, `${ projectPath }/${ template.destination }`)
+                            .then(() => {
+                                console.log(`copied: ${ projectPath }/${ template.destination }`);
+                            });
+                    });
+                    return projectPath; 
+                })
+            });
+    })
+    
     .finally(() => rl.close());
