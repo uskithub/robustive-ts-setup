@@ -35,10 +35,16 @@ readdir(path, { withFileTypes : true })
     })
     .then((answers: prompts.Answers<string>) => {
         const projectPath = `${ path }/${ answers.project }`;
-        
-        // package.json に Dependencies を追加
-        execSync(`cd ${ projectPath } && yarn add Robustive/robustive-ts`);
-        
+
+        // Dependencies の追加
+        return readFile("./template/package.json", "utf8")
+            .then((data) => {
+                const { dependencies, devDependencies }: { dependencies: string[], devDependencies: string[] } = parse(data);
+                execSync(`cd ${ projectPath } && yarn add ${ dependencies.join(" ") } && yarn add -D ${ devDependencies.join(" ") }`, { stdio: "inherit" });
+                return projectPath;
+            });
+    })
+    .then((projectPath: string) => {
         // ディレクトリの作成
         return readFile("./template/directory.json", "utf8")
             .then((data) => {
@@ -50,7 +56,7 @@ readdir(path, { withFileTypes : true })
                     });
                 });
                 return projectPath; 
-            })
+            });
     })
     .then((projectPath: string) => {
         // tsconfigへの項目追加
@@ -69,40 +75,40 @@ readdir(path, { withFileTypes : true })
             .then(() => {
                 // テンプレートのコピー
                 return readFile("./template/copy.json", "utf8")
-                .then((data) => {
-                    const templates: { source: string; destination: string; }[] = parse(data);
-                    templates.forEach((template) => {
-                        return copyFile(template.source, `${ projectPath }/${ template.destination }`)
-                            .then(() => {
-                                console.log(`copied: ${ projectPath }/${ template.destination }`);
-                            });
+                    .then((data) => {
+                        const templates: { source: string; destination: string; }[] = parse(data);
+                        templates.forEach((template) => {
+                            return copyFile(template.source, `${ projectPath }/${ template.destination }`)
+                                .then(() => {
+                                    console.log(`copied: ${ projectPath }/${ template.destination }`);
+                                });
+                        });
+                        return projectPath; 
                     });
-                    return projectPath; 
-                })
             })
             .then(() => {
                 // 既存ファイルの移動
                 return readFile("./template/move.json", "utf8")
-                .then((data) => {
-                    const templates: { source: string; destination: string; }[] = parse(data);
-                    templates.forEach((template) => {
-                        return access(`${ projectPath }/${ template.source }`, constants.F_OK)
-                            .then(() => {
-                                return rename(`${ projectPath }/${ template.source }`, `${ projectPath }/${ template.destination }`)
-                            })
-                            .then(() => {
-                                console.log(`moved: ${ template.source } ---> ${ template.destination }`);
-                            })
-                            .catch((err) => {
-                                if (err.code === "ENOENT") {
-                                    console.log(`not found: ${ template.source }`)
-                                }
-                                if (err.code === "EPERM") {
-                                    console.log(`permission denied: ${ template.source }`)
-                                }
-                            });
+                    .then((data) => {
+                        const templates: { source: string; destination: string; }[] = parse(data);
+                        templates.forEach((template) => {
+                            return access(`${ projectPath }/${ template.source }`, constants.F_OK)
+                                .then(() => {
+                                    return rename(`${ projectPath }/${ template.source }`, `${ projectPath }/${ template.destination }`)
+                                })
+                                .then(() => {
+                                    console.log(`moved: ${ template.source } ---> ${ template.destination }`);
+                                })
+                                .catch((err) => {
+                                    if (err.code === "ENOENT") {
+                                        console.log(`not found: ${ template.source }`)
+                                    }
+                                    if (err.code === "EPERM") {
+                                        console.log(`permission denied: ${ template.source }`)
+                                    }
+                                });
+                        });
+                        return projectPath; 
                     });
-                    return projectPath; 
-                });
             });
     });

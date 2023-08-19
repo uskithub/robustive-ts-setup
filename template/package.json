@@ -1,5 +1,8 @@
 {
-  "dependencies": {
-      "robustive-ts": "Robustive/robustive-ts"
-  }
+  "dependencies": [
+    "Robustive/robustive-ts"
+  ]
+  , "devDependencies": [
+    "@types/node"
+  ]
 }

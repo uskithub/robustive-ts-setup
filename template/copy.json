@@ -2,4 +2,5 @@
     { "source": "./template/performers/index.ts", "destination": "src/client/service/application/performers/index.ts" }
     , { "source": "./template/actors/index.ts", "destination": "src/shared/service/application/actors/index.ts" }
     , { "source": "./template/usecases/index.ts", "destination": "src/shared/service/application/usecases/index.ts" }
+    , { "source": "./template/vite.config.ts", "destination": "vite.config.ts" }
 ]

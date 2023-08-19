@@ -16,10 +16,11 @@
       , "@client/*": ["src/client/*"]
       , "@server/*": ["src/server/*"]
       , "@shared/*": ["src/shared/*"]
+      , "@views/*": ["src/client/service/presentation/views/*"]
       , "@domain/*": ["src/shared/service/domain/*"]
       , "@interfaces/*": ["src/shared/service/domain/interfaces/*"]
+      , "@actors/*": ["src/shared/service/application/actors/*"]
       , "@usecases/*": ["src/shared/service/application/usecases/*"]
-      , "@views/*": ["src/client/service/presentation/views/*"]
     }
   }
   , "ts-node": {
