@@ -1,8 +1,10 @@
 {
   "dependencies": [
     "Robustive/robustive-ts"
+    , "vuetify"
   ]
   , "devDependencies": [
     "@types/node"
+    , "vite-plugin-vuetify"
   ]
 }

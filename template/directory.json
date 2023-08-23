@@ -3,7 +3,7 @@
     , "src/client/service/infrastructure"
     , "src/client/service/presentation/components"
     , "src/client/service/presentation/views"
-    , "src/client/system"
+    , "src/client/system/plugins"
     , "src/server/service"
     , "src/server/system"
     , "src/shared/service/domain/entities"

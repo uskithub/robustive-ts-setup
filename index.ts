@@ -73,20 +73,6 @@ readdir(path, { withFileTypes : true })
                     });
             })
             .then(() => {
-                // テンプレートのコピー
-                return readFile("./template/copy.json", "utf8")
-                    .then((data) => {
-                        const templates: { source: string; destination: string; }[] = parse(data);
-                        templates.forEach((template) => {
-                            return copyFile(template.source, `${ projectPath }/${ template.destination }`)
-                                .then(() => {
-                                    console.log(`copied: ${ projectPath }/${ template.destination }`);
-                                });
-                        });
-                        return projectPath; 
-                    });
-            })
-            .then(() => {
                 // 既存ファイルの移動
                 return readFile("./template/move.json", "utf8")
                     .then((data) => {
@@ -106,6 +92,20 @@ readdir(path, { withFileTypes : true })
                                     if (err.code === "EPERM") {
                                         console.log(`permission denied: ${ template.source }`)
                                     }
+                                });
+                        });
+                        return projectPath; 
+                    });
+            })
+            .then(() => {
+                // テンプレートのコピー
+                return readFile("./template/copy.json", "utf8")
+                    .then((data) => {
+                        const templates: { source: string; destination: string; }[] = parse(data);
+                        templates.forEach((template) => {
+                            return copyFile(template.source, `${ projectPath }/${ template.destination }`)
+                                .then(() => {
+                                    console.log(`copied: ${ projectPath }/${ template.destination }`);
                                 });
                         });
                         return projectPath; 

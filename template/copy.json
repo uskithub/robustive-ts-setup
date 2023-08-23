@@ -1,6 +1,11 @@
 [
     { "source": "./template/performers/index.ts", "destination": "src/client/service/application/performers/index.ts" }
+    , { "source": "./template/plugins/vuetify.ts", "destination": "src/client/system/plugins/vuetify.ts" }
     , { "source": "./template/actors/index.ts", "destination": "src/shared/service/application/actors/index.ts" }
     , { "source": "./template/usecases/index.ts", "destination": "src/shared/service/application/usecases/index.ts" }
+    , { "source": "./template/App.vue", "destination": "src/client/App.vue" }
+    , { "source": "./template/components/HelloWorld.vue", "destination": "src/client/service/presentation/components/HelloWorld.vue" }
+    , { "source": "./template/main.ts", "destination": "src/client/main.ts" }
+    , { "source": "./template/index.html", "destination": "index.html" }
     , { "source": "./template/vite.config.ts", "destination": "vite.config.ts" }
 ]
