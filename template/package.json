@@ -2,9 +2,16 @@
   "dependencies": [
     "Robustive/robustive-ts"
     , "vuetify"
+    , "vue-router@4"
   ]
   , "devDependencies": [
     "@types/node"
+    , "pug"
     , "vite-plugin-vuetify"
+    , "@mdi/font"
+    , "@fortawesome/fontawesome-svg-core"
+    , "@fortawesome/vue-fontawesome"
+    , "@fortawesome/free-solid-svg-icons"
+    , "@fortawesome/free-regular-svg-icons"
   ]
 }

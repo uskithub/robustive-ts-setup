@@ -1,30 +1,25 @@
 <script setup lang="ts">
-import HelloWorld from "./service/presentation/components/HelloWorld.vue";
+import { provide } from "vue";
+import { DISPATCHER_KEY, createDispatcher } from "@/client/service/application/performers";
+import { SignInStatus } from "@/shared/service/domain/interfaces/authenticator";
+import { U } from "@/shared/service/application/usecases";
+import { Nobody } from "@/shared/service/application/usecases/nobody";
+
+
+const dispatcher = createDispatcher();
+provide(DISPATCHER_KEY, dispatcher);
+
+const { stores, dispatch } = dispatcher;
+
+if (stores.shared.signInStatus.case === SignInStatus.unknown) {
+    dispatch(U.boot.basics[Nobody.boot.basics.userOpensSite]());
+}
+
 </script>
 
-<template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-  </div>
-  <HelloWorld msg="Vite + Vue + Vuetify + TS + Robustive-ts" />
+<template lang="pug">
+v-app(id="inspire")
+  router-view
 </template>
 
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
-</style>
+<style scoped></style>

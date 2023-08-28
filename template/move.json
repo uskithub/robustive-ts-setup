@@ -1,6 +1,7 @@
 [
     { "source": "src/App.vue", "destination": "src/client/App.vue" }
     , { "source": "src/components", "destination": "src/client/service/presentation/components" }
+    , { "source": "src/assets", "destination": "src/client/service/presentation/assets" }
     , { "source": "src/main.ts", "destination": "src/client/main.ts" }
     , { "source": "src/style.css", "destination": "src/client/style.css" }
 ]
