@@ -1,6 +1,5 @@
 import * as dotenv from "dotenv";
 import * as prompts from "prompts";
-import * as readline from "node:readline/promises";
 import { exit } from "node:process";
 import { access, constants, copyFile, readFile, readdir, rename, writeFile } from "node:fs/promises";
 import { mkdir } from "node:fs";

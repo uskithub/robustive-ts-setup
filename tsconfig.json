@@ -1,6 +1,6 @@
 {
-    "compilerOptions": {
-      "module": "CommonJS",
-      "strict": true
-    }
+  "compilerOptions": {
+    "module": "CommonJS",
+    "strict": true
   }
+}

@@ -1,44 +1,55 @@
 [
-    { "source": "./template/performers/index.ts", "destination": "src/client/service/application/performers/index.ts" }
-    , { "source": "./template/performers/application.ts", "destination": "src/client/service/application/performers/application.ts" }
-    , { "source": "./template/performers/authentication.ts", "destination": "src/client/service/application/performers/authentication.ts" }
-    , { "source": "./template/plugins/router.ts", "destination": "src/client/system/plugins/router.ts" }
-    , { "source": "./template/plugins/vuetify.ts", "destination": "src/client/system/plugins/vuetify.ts" }
-    , { "source": "./template/actors/index.ts", "destination": "src/shared/service/application/actors/index.ts" }
-    , { "source": "./template/usecases/index.ts", "destination": "src/shared/service/application/usecases/index.ts" }
-    , { "source": "./template/usecases/common.ts", "destination": "src/shared/service/application/usecases/common.ts" }
-    , { "source": "./template/usecases/nobody/index.ts", "destination": "src/shared/service/application/usecases/nobody/index.ts" }
-    , { "source": "./template/usecases/nobody/boot.ts", "destination": "src/shared/service/application/usecases/nobody/boot.ts" }
-    , { "source": "./template/usecases/nobody/signIn.ts", "destination": "src/shared/service/application/usecases/nobody/signIn.ts" }
-    , { "source": "./template/usecases/nobody/signUp.ts", "destination": "src/shared/service/application/usecases/nobody/signUp.ts" }
-    , { "source": "./template/usecases/signedInUser/index.ts", "destination": "src/shared/service/application/usecases/signedInUser/index.ts" }
-    , { "source": "./template/usecases/signedInUser/signOut.ts", "destination": "src/shared/service/application/usecases/signedInUser/signOut.ts" }
-    
-    , { "source": "./template/domain/dependencies.ts", "destination": "src/shared/service/domain/dependencies.ts" }
-    , { "source": "./template/domain/interfaces/analytics.ts", "destination": "src/shared/service/domain/interfaces/analytics.ts" }
-    , { "source": "./template/domain/interfaces/authenticator.ts", "destination": "src/shared/service/domain/interfaces/authenticator.ts" }
-    , { "source": "./template/domain/interfaces/notifier.ts", "destination": "src/shared/service/domain/interfaces/notifier.ts" }
-    
-    , { "source": "./template/domain/analytics/log.ts", "destination": "src/shared/service/domain/analytics/log.ts" }
-    , { "source": "./template/domain/application/application.ts", "destination": "src/shared/service/domain/application/application.ts" }
-    , { "source": "./template/domain/authentication/user.ts", "destination": "src/shared/service/domain/authentication/user.ts" }
-    , { "source": "./template/domain/notification/notice.ts", "destination": "src/shared/service/domain/notification/notice.ts" }
-    
-    , { "source": "./template/system/interfaces/architecture.ts", "destination": "src/shared/system/interfaces/architecture.ts" }
-    , { "source": "./template/system/interfaces/validation.ts", "destination": "src/shared/system/interfaces/validation.ts" }
-    , { "source": "./template/system/localizations/index.ts", "destination": "src/shared/system/localizations/index.ts" }
-    , { "source": "./template/system/localizations/en.ts", "destination": "src/shared/system/localizations/en.ts" }
-    , { "source": "./template/system/localizations/ja.ts", "destination": "src/shared/system/localizations/ja.ts" }
-    , { "source": "./template/system/utils/enum.ts", "destination": "src/shared/system/utils/enum.ts" }
-    , { "source": "./template/presentations/index.ts", "destination": "src/client/service/presentation/index.ts" }
-    , { "source": "./template/presentations/components/drawer/drawer.vue", "destination": "src/client/service/presentation/components/drawer/drawer.vue" }
-    , { "source": "./template/presentations/components/drawer/index.ts", "destination": "src/client/service/presentation/components/drawer/index.ts" }
-    , { "source": "./template/presentations/components/HelloWorld.vue", "destination": "src/client/service/presentation/components/HelloWorld.vue" }
-    , { "source": "./template/presentations/views/Home.vue", "destination": "src/client/service/presentation/views/Home.vue" }
-    , { "source": "./template/presentations/views/SignIn.vue", "destination": "src/client/service/presentation/views/SignIn.vue" }
-    , { "source": "./template/presentations/views/SignUp.vue", "destination": "src/client/service/presentation/views/SignUp.vue" }
-    , { "source": "./template/App.vue", "destination": "src/client/App.vue" }
-    , { "source": "./template/main.ts", "destination": "src/client/main.ts" }
-    , { "source": "./template/index.html", "destination": "index.html" }
+    { "source": "./template/index.html", "destination": "index.html" }
     , { "source": "./template/vite.config.ts", "destination": "vite.config.ts" }
+    , { "source": "./template/client/App.vue", "destination": "src/client/App.vue" }
+    , { "source": "./template/client/main.ts", "destination": "src/client/main.ts" }
+    
+    , { "source": "./template/client/service/performers/index.ts", "destination": "src/client/service/application/performers/index.ts" }
+    , { "source": "./template/client/service/performers/application.ts", "destination": "src/client/service/application/performers/application.ts" }
+    , { "source": "./template/client/service/performers/authentication.ts", "destination": "src/client/service/application/performers/authentication.ts" }
+    , { "source": "./template/client/service/presentations/index.ts", "destination": "src/client/service/presentation/index.ts" }
+    , { "source": "./template/client/service/presentations/components/drawer/drawer.vue", "destination": "src/client/service/presentation/components/drawer/drawer.vue" }
+    , { "source": "./template/client/service/presentations/components/drawer/index.ts", "destination": "src/client/service/presentation/components/drawer/index.ts" }
+    , { "source": "./template/client/service/presentations/components/HelloWorld.vue", "destination": "src/client/service/presentation/components/HelloWorld.vue" }
+    , { "source": "./template/client/service/presentations/views/Home.vue", "destination": "src/client/service/presentation/views/Home.vue" }
+    , { "source": "./template/client/service/presentations/views/SignIn.vue", "destination": "src/client/service/presentation/views/SignIn.vue" }
+    , { "source": "./template/client/service/presentations/views/SignUp.vue", "destination": "src/client/service/presentation/views/SignUp.vue" }
+    
+    , { "source": "./template/client/system/plugins/router.ts", "destination": "src/client/system/plugins/router.ts" }
+    , { "source": "./template/client/system/plugins/vuetify.ts", "destination": "src/client/system/plugins/vuetify.ts" }
+    
+    , { "source": "./template/shared/service/serviceErrors.ts", "destination": "src/shared/service/serviceErrors.ts" }
+    , { "source": "./template/shared/service/domain/dependencies.ts", "destination": "src/shared/service/domain/dependencies.ts" }
+    , { "source": "./template/shared/service/domain/interfaces/analytics.ts", "destination": "src/shared/service/domain/interfaces/analytics.ts" }
+    , { "source": "./template/shared/service/domain/interfaces/authenticator.ts", "destination": "src/shared/service/domain/interfaces/authenticator.ts" }
+    , { "source": "./template/shared/service/domain/interfaces/notifier.ts", "destination": "src/shared/service/domain/interfaces/notifier.ts" }
+    , { "source": "./template/shared/service/domain/analytics/log.ts", "destination": "src/shared/service/domain/analytics/log.ts" }
+    , { "source": "./template/shared/service/domain/application/application.ts", "destination": "src/shared/service/domain/application/application.ts" }
+    , { "source": "./template/shared/service/domain/authentication/user.ts", "destination": "src/shared/service/domain/authentication/user.ts" }
+    , { "source": "./template/shared/service/domain/notification/notice.ts", "destination": "src/shared/service/domain/notification/notice.ts" }
+    
+    , { "source": "./template/shared/service/application/actors/index.ts", "destination": "src/shared/service/application/actors/index.ts" }
+    , { "source": "./template/shared/service/application/actors/nobody.ts", "destination": "src/shared/service/application/actors/nobody.ts" }
+    , { "source": "./template/shared/service/application/actors/authenticatedUser.ts", "destination": "src/shared/service/application/actors/authenticatedUser.ts" }
+    , { "source": "./template/shared/service/application/actors/authorizedUser.ts", "destination": "src/shared/service/application/actors/authorizedUser.ts" }
+    , { "source": "./template/shared/service/application/actors/service.ts", "destination": "src/shared/service/application/actors/service.ts" }
+
+
+
+    , { "source": "./template/shared/service/application/common.ts", "destination": "src/shared/service/application/common.ts" }
+    , { "source": "./template/shared/service/application/usecases/index.ts", "destination": "src/shared/service/application/usecases/index.ts" }
+    , { "source": "./template/shared/service/application/usecases/application/boot.ts", "destination": "src/shared/service/application/usecases/application/boot.ts" }
+    , { "source": "./template/shared/service/application/usecases/authentication/signIn.ts", "destination": "src/shared/service/application/usecases/authentication/signIn.ts" }
+    , { "source": "./template/shared/service/application/usecases/authentication/signUp.ts", "destination": "src/shared/service/application/usecases/authentication/signUp.ts" }
+    , { "source": "./template/shared/service/application/usecases/authentication/signOut.ts", "destination": "src/shared/service/application/usecases/authentication/signOut.ts" }
+
+    , { "source": "./template/shared/system/systemErrors.ts", "destination": "src/shared/system/systemErrors.ts" }
+    , { "source": "./template/shared/system/interfaces/architecture.ts", "destination": "src/shared/system/interfaces/architecture.ts" }
+    , { "source": "./template/shared/system/interfaces/validation.ts", "destination": "src/shared/system/interfaces/validation.ts" }
+    , { "source": "./template/shared/system/localizations/index.ts", "destination": "src/shared/system/localizations/index.ts" }
+    , { "source": "./template/shared/system/localizations/en.ts", "destination": "src/shared/system/localizations/en.ts" }
+    , { "source": "./template/shared/system/localizations/ja.ts", "destination": "src/shared/system/localizations/ja.ts" }
+    , { "source": "./template/shared/system/utils/enum.ts", "destination": "src/shared/system/utils/enum.ts" }
+    
+    
 ]
