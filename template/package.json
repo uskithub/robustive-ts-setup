@@ -8,6 +8,7 @@
     "@types/node"
     , "pug"
     , "vite-plugin-vuetify"
+    , "vite-tsconfig-paths"
     , "@mdi/font"
     , "@fortawesome/fontawesome-svg-core"
     , "@fortawesome/vue-fontawesome"
